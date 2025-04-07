@@ -12,7 +12,8 @@ const inventorySchema = new mongoose.Schema({
         temperature: { type: Number, required: true },
         expirationDate: { type: Date, required: true },
         
-      }, {timestamps: true});
+      }, {timestamps: true}
+    );
       
 
       inventorySchema.plugin(normalize);
