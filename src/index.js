@@ -3,6 +3,8 @@ import cors from 'cors';
 import 'dotenv/config';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
+import userRouter from "./routes/userRoutes.js";
+import { shopRouter } from './routes/shop/shopRoutes.js';
 
 
 const app = express();
@@ -22,6 +24,8 @@ await mongoose.connect(process.env.MONGODB_URI)
   
 
 //Routes
+app.use('/api', userRouter)
+app.use("/api", shopRouter);
 
 
 // Start the server

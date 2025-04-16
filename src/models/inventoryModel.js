@@ -1,7 +1,7 @@
-import mongoose from 'mongoose';
+import {Schema, model} from 'mongoose';
 import normalize from "normalize-mongoose";
 
-const inventorySchema = new mongoose.Schema({
+const inventorySchema = new Schema({
         product_id: { 
           type: String,
           ref: 'Product', 
@@ -17,6 +17,6 @@ const inventorySchema = new mongoose.Schema({
       
 
       inventorySchema.plugin(normalize);
-      export const InventoryModel = mongoose.model('Inventory', inventorySchema);
+      export const InventoryModel = model('Inventory', inventorySchema);
       
       

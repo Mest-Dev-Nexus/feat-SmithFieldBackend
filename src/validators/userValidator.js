@@ -5,6 +5,14 @@ export const registerUserValidator = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string().min(8).required(),
   confirmPassword: Joi.ref("password"),
+  role: Joi.string().required().valid("Administrator", "Farmer", "Consumer"),
+  consumerType: Joi.string()
+    .valid("normalConsumer", "Food Processor", "Bulk Buyer")
+    .when("role", {
+      is: "Consumer",
+      then: Joi.required(),
+      otherwise: Joi.optional(),
+    }),
 }).with("password", "confirmPassword");
 
 export const loginUserValidator = Joi.object({
@@ -14,7 +22,5 @@ export const loginUserValidator = Joi.object({
 });
 
 export const updateUserValidator = Joi.object({
-  role: Joi.string()
-    .valid("Administrator", "Farmer", "user", "staff")
-    .required(),
+  role: Joi.string().valid("Administrator", "Farmer", "Consumer").required(),
 });
