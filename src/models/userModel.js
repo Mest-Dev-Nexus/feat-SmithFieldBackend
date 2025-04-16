@@ -1,19 +1,28 @@
-import mongoose from "mongoose";
-import normalize from "normalize-mongoose";
+import { Schema, model } from "mongoose";
+import normalize from "normalize-mongoose/index.js";
 
-const userSchema = new mongoose.Schema(
+
+const userSchema = new Schema(
   {
     username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    //authorization
+   
     role: {
       type: String,
-      default: "user",
-      enum: ["Administrator", "Farmer", "user", "staff"],
+      default: "Consumer",
+      enum: ["Administrator", "Farmer", "Consumer"],
+    },
+    consumerType: {
+      type: String,
+      default: "normalConsumer",
+      enum: ['normalConsumer', 'Food Processor', 'Bulk Buyer'],
+      required: function() {
+        return this.role === "Consumer";
+      }
     },
   },
-  { timeStamps: true }
+  { timestamps: true }
 );
 
 userSchema.plugin(normalize);

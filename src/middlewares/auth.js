@@ -1,5 +1,5 @@
 import {expressjwt} from 'express-jwt';
-import { UserModel } from '../models/user.js';
+import { UserModel } from '../models/userModel.js';
 
 export const isAuthenticated = expressjwt({
     secret: process.env.JWT_SECRET_KEY,
@@ -9,7 +9,10 @@ export const isAuthenticated = expressjwt({
 //authorization
 export const isAuthorized = (roles) => {
     return async (req, res, next) => {
-        const user = await UserModel.findById(req.auth._id);
+        const user = await UserModel.findById(req.auth.id);
+        if (!user) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
         if(roles?.includes(user.role)) {
             next();
         }else {
