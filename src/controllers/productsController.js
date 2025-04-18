@@ -1,8 +1,19 @@
-import { ProductModel } from "../../models/shop/shopModel.js";
-import { addProductValidator } from "../../validators/shop/shopValidator.js";
+import { ProductModel } from "../models/ProductModel.js";
+import { addProductValidator } from "../validators/product.js";
+import { CategoryModel } from "../models/category.js";
+import mongoose from "mongoose";
 
 export const addProduct = async (req, res, next) => {
   try {
+    let categoryId = req.body.category;
+        if (typeof categoryId === 'string' && !mongoose.Types.ObjectId.isValid(categoryId)) {
+      const category = await CategoryModel.findOne({ name: categoryId });
+      if (!category) {
+        return res.status(400).json({ message: `Category "${categoryId}" not found` });
+      }
+      categoryId = category._id;
+      req.body.category = categoryId;
+    }
     const { error, value } = addProductValidator.validate(
       {
         ...req.body,

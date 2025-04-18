@@ -6,9 +6,9 @@ import {
   updateProduct,
   deleteProduct,
   countProducts,
-} from "../../controllers/shop/shopController.js";
-import { isAuthenticated, isAuthorized } from "../../middlewares/auth.js";
-import { imageUpload } from "../../middlewares/upload.js";
+} from "../controllers/productsController.js";
+import { isAuthenticated, isAuthorized } from "../middlewares/auth.js";
+import { imageUpload } from "../middlewares/upload.js";
 
 export const shopRouter = Router();
 
@@ -37,3 +37,5 @@ shopRouter.delete(
   isAuthorized(["Administrator"]),
   deleteProduct
 );
+
+//filter .where by

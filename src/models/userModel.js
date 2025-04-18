@@ -26,4 +26,4 @@ const userSchema = new Schema(
 );
 
 userSchema.plugin(normalize);
-export const UserModel = model("User", userSchema);
+export const UserModel = model("Administrator", userSchema);
