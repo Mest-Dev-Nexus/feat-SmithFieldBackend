@@ -1,4 +1,4 @@
-import { contactMessageSchema } from "../validators/contactValidator.js";
+import { contactMessageSchema } from "../validators/contact.js";
 import { ContactMessageModel } from "../models/DataModels.js/contactMessageModel.js";
 import { FaqModel } from "../models/";
 import { ContactInfoModel } from "../models/ContactInfoModel";

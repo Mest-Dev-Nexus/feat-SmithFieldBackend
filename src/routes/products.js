@@ -6,7 +6,7 @@ import {
   updateProduct,
   deleteProduct,
   countProducts,
-} from "../controllers/productsController.js";
+} from "../controllers/products.js";
 import { isAuthenticated, isAuthorized } from "../middlewares/auth.js";
 import { imageUpload } from "../middlewares/upload.js";
 
