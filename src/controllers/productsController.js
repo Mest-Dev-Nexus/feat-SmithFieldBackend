@@ -1,4 +1,4 @@
-import { ProductModel } from "../models/ProductModel.js";
+import { ProductModel } from "../models/productModel.js"
 import { addProductValidator } from "../validators/product.js";
 import { CategoryModel } from "../models/category.js";
 import mongoose from "mongoose";
