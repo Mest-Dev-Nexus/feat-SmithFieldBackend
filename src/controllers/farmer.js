@@ -1,21 +1,17 @@
-import { ProductModel } from "../models/productModel.js";
-
-
+import { ProductModel } from "../models/product.js";
 
 export const getFarmerProducts = async (req, res) => {
   try {
     const farmerProducts = await ProductModel.find({
       consumer: "farmer",
       deleted: false,
-    })
-      .populate("category");
+    }).populate("category");
 
     res.status(200).json({ success: true, data: farmerProducts });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
 };
-
 
 export const getProductById = async (req, res) => {
   try {
@@ -24,7 +20,9 @@ export const getProductById = async (req, res) => {
       .populate("userId");
 
     if (!product || product.deleted) {
-      return res.status(404).json({ success: false, message: "Product not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Product not found" });
     }
 
     res.status(200).json({ success: true, data: product });
@@ -43,7 +41,9 @@ export const updateProduct = async (req, res) => {
     );
 
     if (!product || product.deleted) {
-      return res.status(404).json({ success: false, message: "Product not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Product not found" });
     }
 
     res.status(200).json({ success: true, data: product });
@@ -62,10 +62,14 @@ export const deleteProduct = async (req, res) => {
     );
 
     if (!product) {
-      return res.status(404).json({ success: false, message: "Product not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Product not found" });
     }
 
-    res.status(200).json({ success: true, message: "Product deleted successfully" });
+    res
+      .status(200)
+      .json({ success: true, message: "Product deleted successfully" });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }

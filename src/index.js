@@ -3,8 +3,8 @@ import cors from "cors";
 import "dotenv/config";
 import morgan from "morgan";
 import mongoose from "mongoose";
-import userRouter from "./routes/userRoutes.js";
-import { shopRouter } from "./routes/productsRoutes.js";
+import userRouter from "./routes/user.js";
+import { shopRouter } from "./routes/products.js";
 import categoryRouter from "./routes/category.js";
 import farmerProductRouter from "./routes/farmer.js";
 

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { loginUser, registerUser, updateUser } from "../controllers/userController.js";
+import { loginUser, registerUser, updateUser } from "../controllers/user.js";
 import { isAuthenticated, isAuthorized } from "../middlewares/auth.js";
 
 
