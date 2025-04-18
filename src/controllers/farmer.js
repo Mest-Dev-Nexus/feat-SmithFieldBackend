@@ -1,4 +1,4 @@
-import { ProductModel } from "../models/ProductModel.js";
+import { ProductModel } from "../models/productModel.js";
 
 
 
@@ -8,8 +8,7 @@ export const getFarmerProducts = async (req, res) => {
       consumer: "farmer",
       deleted: false,
     })
-      .populate("category")
-      .populate("userId");
+      .populate("category");
 
     res.status(200).json({ success: true, data: farmerProducts });
   } catch (error) {
