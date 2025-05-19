@@ -1,10 +1,19 @@
-//fetch farmer-consumer products
-//filter .where the consumer = farmer
-import express from "express";
+import { Router } from "express";
 import { getFarmerProducts } from "../controllers/farmer.js";
+import { authorizeRole } from "../middlewares/auth.js";
 
-const farmerProductRouter = express.Router();
 
-farmerProductRouter.get("/products/farmer-consumer", getFarmerProducts);
 
-export default farmerProductRouter;
+
+export const farmerProductRouter = Router();
+
+
+
+
+
+
+
+
+farmerProductRouter.get("/products/farmer-consumer", authorizeRole(["Farmer"]), getFarmerProducts);
+
+

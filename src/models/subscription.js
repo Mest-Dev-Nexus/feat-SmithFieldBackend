@@ -3,21 +3,10 @@ import normalize from "normalize-mongoose/index.js";
 
 const subscriptionSchema = new Schema(
   {
-    businessName: { type: Types.ObjectId },
+    name: { type: Types.ObjectId },
     contactPerson: { type: Number },
-    quantity: { type: Number },
     startDate: { type: Date },
-    productType: {
-      type: String,
-      required: true,
-      enum: ["vegetables", "fruits", "grains", "others"],
-    },
-    vegetableList: {
-      type: [String],
-      required: function () {
-        return this.productType === "vegetables";
-      },
-    },
+    products: [{ product: {type: Types.ObjectId}, quantity: {type: Number} }],
     frequency: { type: String, enum: ["daily", "weekly", "monthly", "yearly"] },
     paymentMethod: {
       type: String,

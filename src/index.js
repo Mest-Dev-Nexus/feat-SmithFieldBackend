@@ -3,10 +3,11 @@ import cors from "cors";
 import "dotenv/config";
 import morgan from "morgan";
 import mongoose from "mongoose";
-import userRouter from "./routes/user.js";
-import { shopRouter } from "./routes/products.js";
-import categoryRouter from "./routes/category.js";
-import farmerProductRouter from "./routes/farmer.js";
+import {userRouter} from "./routes/user.js";
+import { categoryRouter } from "./routes/category.js";
+import { farmerProductRouter } from "./routes/farmer.js";
+import {productRouter} from "./routes/products.js"
+import {orderRouter} from "./routes/order.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -25,11 +26,10 @@ await mongoose
 
 //Routes
 app.use("/api", userRouter);
-app.use("/api", shopRouter);
+app.use("/api", productRouter);
 app.use("/api", categoryRouter);
 app.use("/api", farmerProductRouter);
-
-
+app.use("/api", orderRouter);
 
 
 // Start the server

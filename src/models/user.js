@@ -1,29 +1,32 @@
 import { Schema, model } from "mongoose";
 import normalize from "normalize-mongoose/index.js";
 
+const baseOptions = {
+  discriminatorKey: 'role',
+  collection: 'users',
+  timestamps: true
+};
 
 const userSchema = new Schema(
   {
-    username: { type: String, required: true, unique: true },
+    firstname: { type: String, required: true },
+    lastname: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-   
+
     role: {
       type: String,
-      default: "Consumer",
       enum: ["Administrator", "Farmer", "Consumer"],
+      default: "Consumer",
+      required: true,
     },
-    consumerType: {
-      type: String,
-      default: "normalConsumer",
-      enum: ['normalConsumer', 'Food Processor', 'Bulk Buyer'],
-      required: function() {
-        return this.role === "Consumer";
-      }
-    },
+
+    resetToken: { type: String },
+    resetTokenExpiry: { type: Date },
   },
-  { timestamps: true }
-);
+  { timestamps: true }, 
+
+  baseOptions);
 
 userSchema.plugin(normalize);
-export const UserModel = model("Administrator", userSchema);
+export const UserModel = model("User", userSchema);
