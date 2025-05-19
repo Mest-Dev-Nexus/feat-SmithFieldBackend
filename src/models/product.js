@@ -11,7 +11,7 @@ const productSchema = new Schema(
     image: { type: String, required: true },
     source: { type: String },
     category: { type: mongoose.Schema.Types.ObjectId, ref: "Category", required: true },
-    consumer: {type:String, enum: ["farmer", "user" ], default:"user"},
+    shopType: {type:String, enum: ["retailer", "wholesaler", "farm-input"], default:"retailer"},
     quantity: { type: Number, required: true, min: 0 },
     deleted: { type: Boolean, default: false },
     userId: { type: mongoose.Schema.Types.ObjectId, ref: "Administrator", required: true },

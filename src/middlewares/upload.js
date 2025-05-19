@@ -17,3 +17,11 @@ export const imageUpload = multer({
   }),
 });
 
+export const profilePicture = multer({
+  storage: new CloudinaryStorage({
+    cloudinary,
+    params: {
+      folder: "Smithfield-profile-Images",
+    },
+  }),
+});

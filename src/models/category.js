@@ -5,6 +5,7 @@ const categorySchema = new Schema(
   {
     name: { type: String, required: true, trim: true },
     description: { type: String, trim: true },
+    shopType: { type: String, enum: ['retail', 'wholesale', 'farm-input'], required: true },
   },
   { timestamps: true }
 );

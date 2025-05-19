@@ -1,4 +1,5 @@
 import express from "express";
+import { Router } from "express";
 import {
   createCategory,
   getCategories,
@@ -8,12 +9,13 @@ import {
 } from "../controllers/categories.js";
 import { isAuthenticated } from "../middlewares/auth.js";
 
-const categoryRouter = express.Router();
+export const categoryRouter = Router();
 
 categoryRouter.post("/createCategory", isAuthenticated, createCategory);
-categoryRouter.get("/", getCategories);
-categoryRouter.get("/:id", getCategoryById);
-categoryRouter.put("/:id", isAuthenticated, updateCategory);
-categoryRouter.delete("/:id", isAuthenticated, deleteCategory);
+categoryRouter.get('/categories', getCategories);
+categoryRouter.get("/categories/:shopType", getCategories);
+categoryRouter.get("/categories/:id", getCategoryById);
+categoryRouter.patch("/categories/:id", isAuthenticated, updateCategory);
+categoryRouter.delete("/categories/:id", isAuthenticated, deleteCategory);
 
-export default categoryRouter;
+

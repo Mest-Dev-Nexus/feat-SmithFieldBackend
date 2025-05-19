@@ -10,9 +10,9 @@ import {
 import { isAuthenticated, isAuthorized } from "../middlewares/auth.js";
 import { imageUpload } from "../middlewares/upload.js";
 
-export const shopRouter = Router();
+export const productRouter = Router();
 
-shopRouter.post(
+productRouter.post(
   "/add/product",
   isAuthenticated,
   isAuthorized(["Administrator"]),
@@ -20,19 +20,19 @@ shopRouter.post(
   addProduct
 );
 
-shopRouter.get("/get/products", getProducts);
-shopRouter.get("/get/product/:id", getProductById);
-shopRouter.get("/count/products", countProducts);
+productRouter.get("/get/products", getProducts);
+productRouter.get("/get/products/:id", getProductById);
+productRouter.get("/count/products", countProducts);
 
-shopRouter.patch(
-  "/patch/product/:id",
+productRouter.patch(
+  "/patch/products/:id",
   isAuthenticated,
   isAuthorized(["Administrator"]),
   updateProduct
 );
 
-shopRouter.delete(
-  "/del/product/:id",
+productRouter.delete(
+  "/del/products/:id",
   isAuthenticated,
   isAuthorized(["Administrator"]),
   deleteProduct
