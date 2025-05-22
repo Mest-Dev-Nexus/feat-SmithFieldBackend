@@ -17,11 +17,6 @@ const deliveryAddressSchema = new Schema({
     type: Number,
     required: true,
     min: 0
-  },
-  country: {
-    type: String,
-    default: 'Ghana', 
-    trim: true
   }
 }, { timestamps: true });
 

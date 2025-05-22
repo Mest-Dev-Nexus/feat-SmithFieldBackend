@@ -3,11 +3,20 @@ import normalize from "normalize-mongoose/index.js";
 
 const subscriptionSchema = new Schema(
   {
-    name: { type: Types.ObjectId },
-    contactPerson: { type: Number },
-    startDate: { type: Date },
-    products: [{ product: {type: Types.ObjectId}, quantity: {type: Number} }],
-    frequency: { type: String, enum: ["daily", "weekly", "monthly", "yearly"] },
+    name: { type: Types.ObjectId, required: true, ref: "Customer" }, // assuming reference
+    contactPerson: { type: Number, required: true },
+    startDate: { type: Date, required: true },
+    products: [
+      {
+        product: { type: Types.ObjectId, required: true, ref: "Product" },
+        quantity: { type: Number, required: true, min: 1 },
+      },
+    ],
+    frequency: {
+      type: String,
+      enum: ["daily", "weekly", "monthly", "yearly"],
+      required: true,
+    },
     paymentMethod: {
       type: String,
       enum: ["Cash", "Mobile Money", "Bank Transfer"],
@@ -18,4 +27,4 @@ const subscriptionSchema = new Schema(
 );
 
 subscriptionSchema.plugin(normalize);
-export const subscriptonModel = model("Subscription", subscriptionSchema);
+export const SubscriptionModel = model("Subscription", subscriptionSchema);
