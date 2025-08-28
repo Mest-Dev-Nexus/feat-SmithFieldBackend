@@ -4,16 +4,18 @@ import { subscriptionSchema } from "../validators/subscription.js";
 export const createSubscription = async (req, res, next) => {
   try {
     const { error, value } = subscriptionSchema.validate(req.body);
-    if (error) {
-      return res.status(400).json({ error: error.details[0].message });
-    }
+    if (error) return res.status(400).json({ error: error.details[0].message });
 
-    const subscription = await SubscriptionModel.create(value);
+    const subscription = await SubscriptionModel.create({
+      ...value,
+      userId: req.auth.id, 
+    });
     res.status(201).json(subscription);
   } catch (err) {
     next(err);
   }
 };
+
 
 export const getAllSubscriptions = async (req, res, next) => {
   try {
