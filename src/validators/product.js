@@ -8,7 +8,7 @@ export const addProductValidator = Joi.object({
   source: Joi.string(),
   category: Joi.string().required(),
   shopType: Joi.string().required(),
-  quantity: Joi.number().integer().min(0).required(),
+  quantity: Joi.string().min(0).required(),
   availability: Joi.boolean().required(),
 });
 
