@@ -3,7 +3,7 @@ import Joi from "joi";
 export const addProductValidator = Joi.object({
   name: Joi.string().required(),
   description: Joi.string().required(),
-  price: Joi.number().positive().required(),
+  price: Joi.string().required(),
   image: Joi.string().required(),
   source: Joi.string(),
   category: Joi.string().required(),
